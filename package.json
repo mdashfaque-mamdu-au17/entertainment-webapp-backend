@@ -5,6 +5,10 @@
   "repository": "https://github.com/mdashfaque-mamdu-au17/entertainment-webapp-backend.git",
   "author": "mdashfaque-mamdu-au17 <77242783+mdashfaque-mamdu-au17@users.noreply.github.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
