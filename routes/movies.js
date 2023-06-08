@@ -6,9 +6,17 @@ const {
   deleteMovie,
   updateMovie,
 } = require('../controllers/movies');
+const authenticateUser = require('../middleware/authentication');
+const authorizeUser = require('../middleware/authorization');
 
-router.route('/').get(getAllMovies).post(createMovies);
+router
+  .route('/')
+  .get(authenticateUser, getAllMovies)
+  .post([authenticateUser, authorizeUser], createMovies);
 
-router.route('/:id').delete(deleteMovie).patch(updateMovie);
+router
+  .route('/:id')
+  .delete([authenticateUser, authorizeUser], deleteMovie)
+  .patch([authenticateUser, authorizeUser], updateMovie);
 
 module.exports = router;
