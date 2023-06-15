@@ -16,6 +16,9 @@ const auth = async (req, res, next) => {
     req.user = { userId: payload.userId, role: payload.role };
     next();
   } catch (error) {
+    if (error instanceof jwt.TokenExpiredError) {
+      throw new UnauthenticatedError('Token expired');
+    }
     throw new UnauthenticatedError('Authentication invalid');
   }
 };
