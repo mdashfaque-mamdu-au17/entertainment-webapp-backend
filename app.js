@@ -4,6 +4,7 @@ require('express-async-errors');
 const express = require('express');
 const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
 
 const app = express();
 
@@ -19,6 +20,7 @@ const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handle');
 
 app.use(cors());
+app.use(helmet());
 app.use(mongoSanitize());
 
 app.use(express.json());
