@@ -6,6 +6,16 @@ const {
 } = require('../errors');
 
 const register = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    throw new BadRequestError('Email and password are required');
+  }
+
+  const isAlreadyRegistered = User.findOne({ email });
+  if (isAlreadyRegistered) {
+    throw new BadRequestError('Email already registered');
+  }
+
   const user = await User.create({ ...req.body });
   const token = user.createJWT();
   res.status(StatusCodes.CREATED).json({
