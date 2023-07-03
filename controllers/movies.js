@@ -4,10 +4,14 @@ const { StatusCodes } = require('http-status-codes');
 const { BadRequestError, NotFoundError } = require('../errors');
 
 const getAllMovies = async (req, res) => {
-  const { category } = req.query;
+  const { category, isTrending } = req.query;
   const queryObject = {};
   if (category) {
     queryObject.category = category;
+  }
+
+  if (isTrending) {
+    queryObject.isTrending = isTrending;
   }
 
   const { userId } = req.user;
@@ -24,12 +28,10 @@ const getAllMovies = async (req, res) => {
     return { ...movie._doc, isBookmarked };
   });
 
-  res
-    .status(StatusCodes.OK)
-    .json({
-      count: moviesWithBookmarkStatus.length,
-      movies: moviesWithBookmarkStatus,
-    });
+  res.status(StatusCodes.OK).json({
+    count: moviesWithBookmarkStatus.length,
+    movies: moviesWithBookmarkStatus,
+  });
 };
 
 const createMovies = async (req, res) => {
