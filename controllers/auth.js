@@ -11,7 +11,7 @@ const register = async (req, res) => {
     throw new BadRequestError('Email and password are required');
   }
 
-  const isAlreadyRegistered = User.findOne({ email });
+  const isAlreadyRegistered = await User.findOne({ email });
   if (isAlreadyRegistered) {
     throw new BadRequestError('Email already registered');
   }
