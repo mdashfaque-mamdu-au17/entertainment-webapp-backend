@@ -26,6 +26,10 @@ const getBookmarks = async (req, res) => {
     );
   }
 
+  filteredBookmarks = filteredBookmarks.map((movie) => {
+    return { ...movie.toObject(), isBookmarked: true };
+  });
+
   res.status(StatusCodes.OK).json({ movies: filteredBookmarks });
 };
 
