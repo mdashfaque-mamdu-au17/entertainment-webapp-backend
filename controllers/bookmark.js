@@ -12,9 +12,7 @@ const getBookmarks = async (req, res) => {
   }).populate('movies');
 
   if (!currentUserBookmarks) {
-    res.status(StatusCodes.NOT_FOUND).json({
-      message: 'Nothing here! please bookmark movies',
-    });
+    res.status(StatusCodes.OK).json({ movies: [] });
     return;
   }
 
