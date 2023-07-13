@@ -63,7 +63,7 @@ const createBookmark = async (req, res) => {
 
 const deleteBookmark = async (req, res) => {
   const userId = req.user.userId;
-  const { movieId } = req.body;
+  const { id: movieId } = req.params;
 
   if (!movieId) {
     throw new BadRequestError('Movie id is required');
