@@ -14,6 +14,7 @@ const connectDB = require('./db/connect');
 const authRouter = require('./routes/auth');
 const movieRouter = require('./routes/movies');
 const bookmarkRouter = require('./routes/bookmark');
+const chartsRouter = require('./routes/charts');
 
 // error handlers
 const notFoundMiddleware = require('./middleware/not-found');
@@ -30,6 +31,7 @@ app.use(express.static('./public'));
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/movies', movieRouter);
 app.use('/api/v1/bookmarks', bookmarkRouter);
+app.use('/api/v1/charts', chartsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
